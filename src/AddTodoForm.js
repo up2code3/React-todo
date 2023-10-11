@@ -4,8 +4,8 @@ function AddTodoForm() {
   return (
     <form>
       <label htmlfor="todoTitle">Title </label>
-      <input id="todoTitle"></input>
-      <submit> Add</submit>
+      <input type="text" id="todoTitle"></input>
+      <button type="submit"> Add</button>
     </form>
   );
 }
