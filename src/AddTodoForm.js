@@ -14,7 +14,7 @@ function AddTodoForm(props) {
   const handleAddTodo = (event) => {
     event.preventDefault();
     
-    let newTodoTitle = event.target.title.value;
+  
     props.onAddTodo({title:todoTitle,id:Date.now()})
 
     setTodoTitle('')
