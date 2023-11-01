@@ -8,7 +8,7 @@ function App() {
   // const [newTodo, setNewTodo] = useState("");
   
   const addTodo = (newTodo) => {
-    setTodoList([newTodo], [...todoList])
+    setTodoList([...todoList, newTodo])
 
   }
   return (
