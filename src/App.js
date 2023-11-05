@@ -15,12 +15,14 @@ function App() {
     <div>
       <h1>Todo List</h1>
       <hr />
-      <AddTodoForm onAddTodo={addTodo} />
+      <AddTodoForm onAddTodo={addTodo}  />
       {/* <p>{newTodo}</p> */}
       <TodoList todoList={todoList} />
     </div>
   );
 }
+
+
 console.log();
 
 export default App;
