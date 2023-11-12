@@ -9,9 +9,8 @@ const TodoList = ({todoList}) => {
       {todoList.map(function (item) {
         return (
           
-            <TodoListItem  
+            <TodoListItem key={item.id} 
              todo={item} /> 
-          
         );
       })}
     </ul>
