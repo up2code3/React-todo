@@ -17,19 +17,27 @@ import TodoList from "./TodoList";
 
 function App() {
   
+  
   const [todoList, setTodoList] = useSemiPersistentState();
 
+
+  const removeTodo = (id) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== id)
+    setTodoList(newTodoList)
+  }
+  
+  
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
-
+  
   return (
     <>
       <h1>Todo List</h1>
       <hr />
       <AddTodoForm onAddTodo={addTodo} />
       <hr />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </>
   );
 }
