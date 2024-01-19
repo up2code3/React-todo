@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+
+import style from "./mainStyle.module.css";
+import Navigation from './Navigation';
 
 
 async function fetchData(setTodoList, setIsLoading) {
@@ -63,35 +65,25 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-                <h1>Todo List</h1>
-                <hr />
-                <AddTodoForm onAddTodo={addTodo} />
-                <hr />
-                {isLoading ? (
-                  <p>Loading...</p>
-                ) : (
-                  <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-                )}
-            </>
-          }
-        />
-        <Route
-        path="/new"
-        element={
-        <>
-        <h1>New Todo List</h1>
-        <hr />
-        </>
-        }
-        />
-      </Routes>
-    </BrowserRouter>
+
+    <>
+      <div className={`${style.body} `}>
+        
+      <Navigation/>
+      
+      <h1 className={`${style.textColor} `}>Todo List</h1>
+      <hr />
+     
+      <AddTodoForm onAddTodo={addTodo} />
+      <hr />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
+    </div>
+    </>
+
   );
 }
 
