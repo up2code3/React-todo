@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
+import style from "./mainStyle.module.css";
+import Navigation from './Navigation';
 
 async function fetchData(setTodoList, setIsLoading) {
   const options = {
@@ -62,8 +64,13 @@ function App() {
 
   return (
     <>
-      <h1>Todo List</h1>
+      <div className={`${style.body} `}>
+        
+      <Navigation/>
+      
+      <h1 className={`${style.textColor} `}>Todo List</h1>
       <hr />
+     
       <AddTodoForm onAddTodo={addTodo} />
       <hr />
       {isLoading ? (
@@ -71,6 +78,7 @@ function App() {
       ) : (
         <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
       )}
+    </div>
     </>
   );
 }
