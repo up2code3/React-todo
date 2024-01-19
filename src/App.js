@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
+
 import style from "./mainStyle.module.css";
 import Navigation from './Navigation';
+
 
 async function fetchData(setTodoList, setIsLoading) {
   const options = {
@@ -63,6 +65,7 @@ function App() {
   };
 
   return (
+
     <>
       <div className={`${style.body} `}>
         
@@ -80,6 +83,7 @@ function App() {
       )}
     </div>
     </>
+
   );
 }
 
