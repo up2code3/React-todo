@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
-
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import style from "./mainStyle.module.css";
 import Navigation from './Navigation';
 
@@ -65,25 +65,37 @@ function App() {
   };
 
   return (
-
-    <>
-      <div className={`${style.body} `}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <div className={`${style.body} `}>
+              
+            <Navigation/>
+            
+            <h1 className={`${style.textColor} `}>Available Jobs</h1>
+            <hr />
+          
+            <AddTodoForm onAddTodo={addTodo} />
+            <hr />
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+            )}
+          </div>
+          </>
+        }
+        />
         
-      <Navigation/>
-      
-      <h1 className={`${style.textColor} `}>Todo List</h1>
-      <hr />
-     
-      <AddTodoForm onAddTodo={addTodo} />
-      <hr />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </div>
-    </>
-
+        <Route path="/new" element={
+          <>
+            <h1>New Route</h1>
+          </>
+        }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
