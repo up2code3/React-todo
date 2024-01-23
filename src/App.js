@@ -4,7 +4,8 @@ import TodoList from "./TodoList";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import style from "./mainStyle.module.css";
 import Navigation from './Navigation';
-
+import { About } from "./Routes/About";
+import { Contact } from "./Routes/Contact";
 
 async function fetchData(setTodoList, setIsLoading) {
   const options = {
@@ -53,7 +54,7 @@ function App() {
     if (!isLoading) {
       localStorage.setItem("savedTodoList", JSON.stringify(todoList));
     }
-  }, [todoList,isLoading]);
+  }, [todoList, isLoading]);
 
   const removeTodo = (id) => {
     const newTodoList = todoList.filter((todo) => todo.id !== id);
@@ -65,6 +66,7 @@ function App() {
   };
 
   return (
+    <div>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={
@@ -73,7 +75,7 @@ function App() {
               
             <Navigation/>
             
-            <h1 className={`${style.textColor} `}>Available Jobs</h1>
+            <h1 className={`${style.textColor} `}>CART 3000</h1>
             <hr />
           
             <AddTodoForm onAddTodo={addTodo} />
@@ -83,6 +85,10 @@ function App() {
             ) : (
               <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
             )}
+            <img
+                    src="https://www.foodbusinessnews.net/ext/resources/2022/09/27/grocery-shop_AdobeStock_LEAD.jpeg?height=667&t=1664296643&width=1080"
+                    className={`${style.cartPic}`}
+                  />
           </div>
           </>
         }
@@ -93,9 +99,16 @@ function App() {
             <h1>New Route</h1>
           </>
         }
+        
+        
         />
+
+        
+      <Route path="/About" element={<About />} />  
+      <Route path="/Contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 
