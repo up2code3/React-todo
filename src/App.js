@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import style from "./mainStyle.module.css";
-import Navigation from './Navigation';
+import Navigation from "./Navigation";
 import { About } from "./Routes/About";
-import { Contact } from "./Routes/Contact";
+import { Contact  } from "./Routes/Contact";
 
 async function fetchData(setTodoList, setIsLoading) {
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
   };
 
   const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
-  
+
   try {
     const response = await fetch(url, options);
 
@@ -67,47 +67,47 @@ function App() {
 
   return (
     <div>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-          <>
-            <div className={`${style.body} `}>
-              
-            <Navigation/>
-            
-            <h1 className={`${style.textColor} `}>CART 3000</h1>
-            <hr />
-          
-            <AddTodoForm onAddTodo={addTodo} />
-            <hr />
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-            )}
-            <img
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className={`${style.body} `}>
+                  <Navigation />
+
+                  <h1 className={`${style.textColor} `}>CART 3000</h1>
+                  <hr />
+
+                  <AddTodoForm onAddTodo={addTodo} />
+                  <hr />
+                  {isLoading ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                  )}
+                  <img
                     src="https://www.foodbusinessnews.net/ext/resources/2022/09/27/grocery-shop_AdobeStock_LEAD.jpeg?height=667&t=1664296643&width=1080"
                     className={`${style.cartPic}`}
                   />
-          </div>
-          </>
-        }
-        />
-        
-        <Route path="/new" element={
-          <>
-            <h1>New Route</h1>
-          </>
-        }
-        
-        
-        />
+                </div>
+              </>
+            }
+          />
 
-        
-      <Route path="/About" element={<About />} />  
-      <Route path="/Contact" element={<Contact />} />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/new"
+            element={
+              <>
+                <h1>New Route</h1>
+              </>
+            }
+          />
+
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
