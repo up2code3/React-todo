@@ -1,4 +1,6 @@
-
+.textColor {
+    color:gold;
+}
 .body {
     margin: 0;
 background-color: grey ;
@@ -11,7 +13,7 @@ font-family: 'Lemon', sans-serif;
 }
 
 .ListItem{
-    color: #ffcc00;
+    color: silver;
 }
 
 .nav {
