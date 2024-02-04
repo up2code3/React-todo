@@ -17,7 +17,7 @@ const TodoContainer = ({REACT_APP_TABLE_NAME }) => {
                 },
             };
 
-            const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${REACT_APP_TABLE_NAME}`;
+            const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${REACT_APP_TABLE_NAME}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`;
             
             try {
                 const response = await fetch(url, options);
@@ -36,14 +36,11 @@ const TodoContainer = ({REACT_APP_TABLE_NAME }) => {
 
                 console.log('Transformed Todos:', todos);
 
-                // const sortedData = data.records.sort((a,b) => a.fields.title.localeCompare(b.title));
-                const sortedData = data.records.sort((a,b) => a.fields.title - b.fields.id);
                 
                 setTodoList(todos);
-                
                 setIsLoading(false);
             } catch (error) {
-                console.error('Fetch Error', error.message)
+                console.error('Fetch Error', error.message);
             }
         };
         fetchData();
@@ -74,7 +71,7 @@ const TodoContainer = ({REACT_APP_TABLE_NAME }) => {
 
             const newRecord = await response.json();
 
-            setTodoList([... todoList, newRecord.fields]);
+            setTodoList([...todoList, newRecord.fields]);
         } catch (error) {
             console.error('Add Todo Error:', error.message);
         }
