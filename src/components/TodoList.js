@@ -3,21 +3,13 @@ import TodoListItem from "./TodoListItem";
 import PropTypes from 'prop-types';
 
 
-const TodoList = ({todoList, onRemoveTodo}) => {
-
+const TodoList = ({ todoList, onRemoveTodo }) => {
   return (
-    <ul>
-      {todoList.map(function (item) {
-        return (
-          
-            <TodoListItem
-            onRemoveTodo={onRemoveTodo} 
-            key={item.id} 
-            todo={item} 
-            /> 
-        );
-      })}
-    </ul>
+      <ul>
+          {todoList.map(todo => (
+              <TodoListItem key={todo.id} todo={todo} title={todo} onRemoveTodo={onRemoveTodo} />
+          ))}
+      </ul>
   );
 };
 
