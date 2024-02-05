@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import AddTodoForm from "./AddTodoForm";
-import TodoList from "./TodoList";
+import React, { useState, useEffect } from 'react'
+import PropTypes from "prop-types"
+import AddTodoForm from './AddTodoForm'
+import TodoList from './TodoList'
+
 
 const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
   const [todoList, setTodoList] = useState([]);
