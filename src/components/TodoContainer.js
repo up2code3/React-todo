@@ -3,13 +3,15 @@ import PropTypes from "prop-types"
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 
+
 const TodoContainer = ({REACT_APP_TABLE_NAME }) => {
     const [todoList, setTodoList] = useState([])
     const [isLoading, setIsLoading] = useState(true);
+    const [isAscending, setIsAscending] = useState(true); 
 
     useEffect(() => {
 
-        const fetchData = async () => {
+        const fetchDataAndSort = async () => {
             const options = {
                 method: 'GET',
                 headers: {
@@ -27,24 +29,41 @@ const TodoContainer = ({REACT_APP_TABLE_NAME }) => {
                 }
 
                 const data = await response.json();
-                console.log('API response', data);
+
+                data.records.sort((objectA, objectB) => {
+                    const titleA = objectA.fields.title.toUpperCase();
+                    const titleB = objectB.fields.title.toUpperCase();
+                    const comparison = isAscending ? 1 : -1;
+
+                    if (titleA < titleB) {
+                        return comparison;
+                    } else if (titleA > titleB){
+                        return -comparison;
+                    } else {
+                        return 0;
+                    }
+                });
 
                 const todos = data.records.map((record) => ({
                     title: record.fields.title,
                     id: record.id,
                 }));
 
-                console.log('Transformed Todos:', todos);
-
-                
                 setTodoList(todos);
                 setIsLoading(false);
             } catch (error) {
                 console.error('Fetch Error', error.message);
             }
         };
-        fetchData();
-    }, [REACT_APP_TABLE_NAME]);
+        
+        fetchDataAndSort();
+            
+    }, [REACT_APP_TABLE_NAME, isAscending]);
+
+    const toggleSortingOrder = () => {
+        setIsAscending((prevIsAscending) => !prevIsAscending);
+        // fetchDataAndSort();
+    };
 
     const addTodo = async (todo) => {
         const options = {
@@ -108,7 +127,13 @@ const TodoContainer = ({REACT_APP_TABLE_NAME }) => {
     return (
         <div>
             <h1>{REACT_APP_TABLE_NAME}</h1>
+            
             <AddTodoForm onAddTodo={addTodo}/>
+            
+            <button onClick={toggleSortingOrder}>
+                Toggle Sorting Order {isAscending ? 'Ascending' : 'Descending'}
+            </button>
+            <hr/>
             {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo}/>}
         </div>
     );

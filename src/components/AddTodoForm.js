@@ -32,7 +32,7 @@ function AddTodoForm({onAddTodo}) {
             onChange={handleTitleChange} 
             type="text"  
           > 
-          Add Item
+          On the Fly
         </InputWithLabel>
           <button type="submit"> Add</button>
         </form>
