@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './mainStyle.module.css'
+import style from './components/mainStyle.module.css'
 
 function Navigation() {
     return (

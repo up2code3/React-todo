@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import AddTodoForm from "./AddTodoForm";
-import TodoList from "./TodoList";
+import AddTodoForm from "./components/AddTodoForm";
+import TodoList from "./components/TodoList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import style from "./mainStyle.module.css";
+import style from "./components/mainStyle.module.css";
 import Navigation from "./Navigation";
 import { About } from "./Routes/About";
 import { Contact  } from "./Routes/Contact";
+
+
+
 
 async function fetchData(setTodoList, setIsLoading) {
   const options = {
@@ -64,6 +67,8 @@ function App() {
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
+
+
 
   return (
     <div>
