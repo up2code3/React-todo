@@ -3,7 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
- 
+  
+
   return (
     <li>
       {todo.title}

@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import style from "./components/mainStyle.module.css";
 import Navigation from "./Navigation";
-import { About } from "./Routes/About";
-import { Contact  } from "./Routes/Contact";
+import About from "./Routes/About";
+import  Contact from "./Routes/Contact";
 import TodoContainer from "./components/TodoContainer";
 
 
@@ -111,9 +111,9 @@ function App() {
           <Route
             path="/new"
             element={
-              <>
+              <div className="style.mainStyle">
                 <h1>New Route</h1>
-              </>
+              </div>
             }
           />
 
