@@ -30,9 +30,11 @@ function AddTodoForm({onAddTodo}) {
             id="todoTitle" 
             value={todoTitle} 
             onChange={handleTitleChange} 
-            type="text"  
-          > 
-          On the Fly
+            type="text" 
+            
+            > 
+        
+          Add New Item
         </InputWithLabel>
           <button type="submit"> Add</button>
         </form>

@@ -5,6 +5,7 @@ function Navigation() {
     return (
         <nav className={style.nav}>
             <ul>
+                <li><a href="/" className={style.navLink}>Home</a></li>
                 <li> <a href="https://shorturl.at/aBY46" className={style.navLink}>airtable</a> </li>
                 <li> <a href="/about" className={style.navLink}>about</a> </li>
                 <li> <a href="/contact" className={style.navLink}>contact</a> </li>

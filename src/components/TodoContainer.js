@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from "prop-types"
-import AddTodoForm from './AddTodoForm'
-import TodoList from './TodoList'
-
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import AddTodoForm from "./AddTodoForm";
+import TodoList from "./TodoList";
 
 const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
   const [todoList, setTodoList] = useState([]);
@@ -63,7 +62,7 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
     // fetchDataAndSort();
   };
 
-  const addTodo = async (todo) => {
+  const addTodo = async (todo, id) => {
     const options = {
       method: "POST",
       headers: {
@@ -87,8 +86,8 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
       }
 
       const newRecord = await response.json();
-
-      setTodoList([...todoList, newRecord.fields]);
+      console.log("new record fields:", newRecord.fields);
+      setTodoList([...todoList, {id: newRecord.id, ...newRecord.fields}]);
     } catch (error) {
       console.error("Add Todo Error:", error.message);
     }
