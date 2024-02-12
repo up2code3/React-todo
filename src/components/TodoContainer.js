@@ -62,7 +62,11 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
     // fetchDataAndSort();
   };
 
-  const addTodo = async (todo, id) => {
+  const addTodo = async (todo) => {
+    if (todo.title === '') {
+      alert('Please enter text');
+      return;
+    }
     const options = {
       method: "POST",
       headers: {
