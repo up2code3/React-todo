@@ -63,7 +63,11 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
   };
 
   const addTodo = async (todo, id) => {
-    const options = {
+    if (todo.title === '') {
+      alert('Please enter text');
+      return;
+    }
+  const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
