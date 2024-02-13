@@ -29,15 +29,13 @@ async function fetchData(setTodoList, setIsLoading) {
     }
 
     const data = await response.json();
-    console.log("API response:", data);
+    
 
     const todos = data.records.map((record) => ({
       title: record.fields.title,
       id: record.id,
     }));
-
-    console.log("Transformed Todos:", todos);
-
+    
     setTodoList(todos);
     setIsLoading(false);
   } catch (error) {
@@ -59,22 +57,7 @@ function App() {
       localStorage.setItem("savedTodoList", JSON.stringify(todoList));
     }
   }, [todoList, isLoading]);
-
-
-/*
-
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(newTodoList);
-  };
-
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
-  };
-
-*/
-
-
+  
   return (
     <div>
       <BrowserRouter>
@@ -85,24 +68,12 @@ function App() {
               <>
                 <div className={`${style.body} `}>
                   <Navigation />
-
-                  <h1 className={`${style.textColor} `}>CART 3000</h1>
-                  <hr />
-                  {/* <AddTodoForm onAddTodo={addTodo} />
-                  <hr />
-                  {isLoading ? (
-                    <p>Loading...</p>
-                  ) : (
-                    <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-                  )} */}
-
                   <TodoContainer REACT_APP_TABLE_NAME={process.env.REACT_APP_TABLE_NAME} />
-                  
                   <img
                     src="https://www.foodbusinessnews.net/ext/resources/2022/09/27/grocery-shop_AdobeStock_LEAD.jpeg?height=667&t=1664296643&width=1080"
                     className={`${style.cartPic}`}
                     alt="ShopCartPic"
-                  />
+                    />
                 </div>
               </>
             }

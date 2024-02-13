@@ -59,15 +59,13 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
 
   const toggleSortingOrder = () => {
     setIsAscending((prevIsAscending) => !prevIsAscending);
-    // fetchDataAndSort();
   };
 
   const addTodo = async (todo, id) => {
-    if (todo.title === '') {
- 
+    if (todo.title === "") {
       return;
     }
-  const options = {
+    const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +89,7 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
 
       const newRecord = await response.json();
       console.log("new record fields:", newRecord.fields);
-      setTodoList([...todoList, {id: newRecord.id, ...newRecord.fields}]);
+      setTodoList([...todoList, { id: newRecord.id, ...newRecord.fields }]);
     } catch (error) {
       console.error("Add Todo Error:", error.message);
     }
@@ -113,11 +111,7 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
-
-      //Parse the json
       await response.json();
-
-      //set todoList state to new Array not containting removed record
       const updatedTodoList = todoList.filter((todo) => todo.id !== id);
       setTodoList(updatedTodoList);
     } catch (error) {
@@ -132,7 +126,7 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
       <AddTodoForm onAddTodo={addTodo} />
 
       <button onClick={toggleSortingOrder}>
-        Toggle Sorting Order {isAscending ? "Ascending" : "Descending"}
+        SORT {isAscending ? "A-Z" : "Z-A"}
       </button>
       <hr />
       {isLoading ? (
