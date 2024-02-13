@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import style from "./components/mainStyle.module.css";
 import Navigation from "./Navigation";
-import About from "./Routes/About";
 import  Contact from "./Routes/Contact";
 import TodoContainer from "./components/TodoContainer";
-
-
-
 
 async function fetchData(setTodoList, setIsLoading) {
   const options = {
@@ -29,7 +23,6 @@ async function fetchData(setTodoList, setIsLoading) {
     }
 
     const data = await response.json();
-    
 
     const todos = data.records.map((record) => ({
       title: record.fields.title,
@@ -78,18 +71,9 @@ function App() {
               </>
             }
           />
-
-          <Route
-            path="/new"
-            element={
-              <div className="style.mainStyle">
-                <h1>New Route</h1>
-              </div>
-            }
-          />
-
-          <Route path="/About" element={<About />} />
+        
           <Route path="/Contact" element={<Contact />} />
+          
         </Routes>
       </BrowserRouter>
     </div>

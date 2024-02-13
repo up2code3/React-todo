@@ -88,7 +88,6 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
       }
 
       const newRecord = await response.json();
-      console.log("new record fields:", newRecord.fields);
       setTodoList([...todoList, { id: newRecord.id, ...newRecord.fields }]);
     } catch (error) {
       console.error("Add Todo Error:", error.message);
