@@ -3,11 +3,9 @@ import PropTypes from "prop-types";
 
 const InputWithLabel = ({
   id,
-  isFocused,
   children,
   value,
   type,
-  name,
   onChange,
 }) => {
   const inputRef = React.useRef();
