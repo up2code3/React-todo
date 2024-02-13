@@ -64,7 +64,7 @@ const TodoContainer = ({ REACT_APP_TABLE_NAME }) => {
 
   const addTodo = async (todo, id) => {
     if (todo.title === '') {
-      alert('Please enter text');
+ 
       return;
     }
   const options = {
